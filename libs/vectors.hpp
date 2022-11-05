@@ -22,18 +22,26 @@ namespace Vector{
         void operator+=(Vec3&);
         void operator-=(Vec3&);
         void operator*=(double);
+
+        double length_squared();
+        Vec3 unit_vector();
     };
+
+    using Point3 = Vec3;
+    using Color3 = Vec3;
 
     class Ray{
     private:
-        Vec3 origin;
+        Point3 origin;
         Vec3 direction;
         double t;
 
     public:
         Ray(const Vec3&);
-        Ray(const Vec3&, const Vec3&);
+        Ray(const Point3&, const Vec3&);
 
-        Vec3 point_on_ray(double);
+        Point3 point_on_ray(double);
+        Point3 get_origin() const;
+        Vec3 get_direction() const;
     };
 }

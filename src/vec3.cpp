@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "vectors.hpp"
 
 using namespace Vector;
@@ -24,17 +26,17 @@ double& Vec3::operator[](int idx){
 
 Vec3 Vec3::operator+(const Vec3& vector){
     Vec3 vec;
-    vec.x = x + vector[0];
-    vec.y = y + vector[1];
-    vec.z = z + vector[2];
+    vec.x = x + vector.x;
+    vec.y = y + vector.y;
+    vec.z = z + vector.z;
     return vec;
 }
 
 Vec3 Vec3::operator-(const Vec3& vector){
     Vec3 vec;
-    vec.x = x - vector[0];
-    vec.y = y - vector[1];
-    vec.z = z - vector[2];
+    vec.x = x - vector.x;
+    vec.y = y - vector.y;
+    vec.z = z - vector.z;
     return vec;
 }
 
@@ -47,19 +49,34 @@ Vec3 Vec3::operator*(const double k){
 }
 
 void Vec3::operator+=(Vec3& vector){
-    this -> x += vector[0];
-    this -> y += vector[1];
-    this -> z += vector[2];
+    this -> x += vector.x;
+    this -> y += vector.y;
+    this -> z += vector.z;
 }
 
 void Vec3::operator-=(Vec3& vector){
-    this -> x -= vector[0];
-    this -> y -= vector[1];
-    this -> z -= vector[2];
+    this -> x -= vector.x;
+    this -> y -= vector.y;
+    this -> z -= vector.z;
 }
 
 void Vec3::operator*=(double k){
     this -> x *= k;
     this -> y *= k;
     this -> z *= k;
+}
+
+double Vec3::length_squared(){
+    return x * x +
+           y * y +
+           z * z;
+}
+
+Vec3 Vec3::unit_vector(){
+    Vec3 vec;
+    double length = sqrt(length_squared());
+    vec.x = x / length;
+    vec.y = y / length;
+    vec.z = z / length;
+    return vec;
 }
