@@ -16,9 +16,10 @@ namespace Vector{
         double operator[](int) const;
         double& operator[](int);
 
-        Vec3 operator+(const Vec3&);
-        Vec3 operator-(const Vec3&);
-        Vec3 operator*(const double);
+        Vec3 operator+(const Vec3&) const;
+        Vec3 operator-(const Vec3&) const;
+        Vec3 operator*(const double) const;
+        Vec3 operator/(const double) const;
         void operator+=(Vec3&);
         void operator-=(Vec3&);
         void operator*=(double);
@@ -40,7 +41,7 @@ namespace Vector{
         Ray(const Vec3&);
         Ray(const Point3&, const Vec3&);
 
-        Point3 point_on_ray(double);
+        Point3 point_on_ray(double) const;
         Point3 get_origin() const;
         Vec3 get_direction() const;
     };

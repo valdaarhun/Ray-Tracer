@@ -24,7 +24,7 @@ double& Vec3::operator[](int idx){
     if (idx == 2) return z;
 }
 
-Vec3 Vec3::operator+(const Vec3& vector){
+Vec3 Vec3::operator+(const Vec3& vector) const{
     Vec3 vec;
     vec.x = x + vector.x;
     vec.y = y + vector.y;
@@ -32,7 +32,7 @@ Vec3 Vec3::operator+(const Vec3& vector){
     return vec;
 }
 
-Vec3 Vec3::operator-(const Vec3& vector){
+Vec3 Vec3::operator-(const Vec3& vector) const{
     Vec3 vec;
     vec.x = x - vector.x;
     vec.y = y - vector.y;
@@ -40,11 +40,19 @@ Vec3 Vec3::operator-(const Vec3& vector){
     return vec;
 }
 
-Vec3 Vec3::operator*(const double k){
+Vec3 Vec3::operator*(const double k) const{
     Vec3 vec;
     vec.x = x * k;
     vec.y = y * k;
     vec.z = z * k;
+    return vec;
+}
+
+Vec3 Vec3::operator/(const double k) const{
+    Vec3 vec;
+    vec.x = x / k;
+    vec.y = y / k;
+    vec.z = z / k;
     return vec;
 }
 
