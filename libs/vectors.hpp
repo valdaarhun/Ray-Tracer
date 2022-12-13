@@ -1,5 +1,7 @@
 #pragma once
 
+#include "utils.hpp"
+
 namespace Vector{
     class Vec3{
     private:
@@ -19,13 +21,24 @@ namespace Vector{
         Vec3 operator+(const Vec3&) const;
         Vec3 operator-(const Vec3&) const;
         Vec3 operator*(const double) const;
+        Vec3 operator*(const Vec3&) const;
         Vec3 operator/(const double) const;
-        void operator+=(Vec3&);
+        // void operator+=(Vec3&);
         void operator-=(Vec3&);
         void operator*=(double);
 
         double length_squared();
         Vec3 unit_vector();
+
+        bool is_near_zero();
+
+        inline static Vec3 random_vector(double a, double b){
+            return Vec3(
+                random_double_range(a, b),
+                random_double_range(a, b),
+                random_double_range(a, b)
+            );
+        }
     };
 
     using Point3 = Vec3;
@@ -38,6 +51,7 @@ namespace Vector{
         double t;
 
     public:
+        Ray() {}
         Ray(const Vec3&);
         Ray(const Point3&, const Vec3&);
 
