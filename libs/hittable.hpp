@@ -1,15 +1,20 @@
 #pragma once
 
+#include <memory>
+
 #include "vectors.hpp"
 #include "vec_opers.hpp"
 
 using namespace Vector;
+
+class Material;
 
 struct Intersection{
     double t;
     Point3 point;
     Vec3 normal;
     bool front_side;
+    std::shared_ptr< Material > material;
 
     inline void set_front_side(const Ray& r, const Vec3& n){
         front_side = dot(r.get_direction(), n) < 0.0;
@@ -19,5 +24,5 @@ struct Intersection{
 
 class Hittable{
 public:
-    virtual bool hit(const Ray&, double, bool, Intersection&) const = 0;
+    virtual bool hit(const Ray&, double, double, Intersection&) const = 0;
 };
